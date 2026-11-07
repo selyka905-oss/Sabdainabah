@@ -1,0 +1,5 @@
+[build]
+  publish = "Pustaka_Al-Inabah"
+
+[build.environment]
+  NODE_VERSION = "20"
