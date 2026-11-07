@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pustaka Al-Inabah</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" data-page="home">
+    <span class="brand-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 14c10-4 18-2 24 3v36C25 48 17 47 8 51z" fill="#fff" stroke="#0d555a" stroke-width="3"/><path d="M56 14c-10-4-18-2-24 3v36c7-5 15-6 24-2z" fill="#d9f0eb" stroke="#0d555a" stroke-width="3"/><path d="M32 17v36M14 24c5-1 9 0 13 2M14 32c5-1 9 0 13 2M50 24c-5-1-9 0-13 2M50 32c-5-1-9 0-13 2" fill="none" stroke="#16838a" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+    <span><strong>Pustaka Al-Inabah</strong><small>SMP IT &amp; SMK Al-Inabah Ponorogo</small></span>
+  </a>
+  <nav><a href="#" data-page="home">Home</a><a href="#" data-page="koleksi">Koleksi Buku</a><a href="#" data-page="misi">Misi Berburu Pengetahuan</a><a href="#" data-page="ai">Asisten AI</a><a href="#" data-page="berita">Berita Terkini</a></nav>
+  <button class="btn btn-outline" id="loginOpen">Login</button>
+</header>
+<main id="app"></main>
+<footer><span>© 2026 Pustaka Al-Inabah · SMP IT &amp; SMK Al-Inabah Ponorogo</span><span>Ruang tumbuh bagi pembaca dan pencari ilmu.</span></footer>
+<div class="modal-backdrop hidden" id="authModal"><section class="modal">
+ <button class="x" id="authClose">×</button><h2>Masuk ke Pustaka</h2><p class="muted">Masuk sebagai admin atau daftar sebagai siswa.</p>
+ <div class="tabs"><button class="tab active" data-tab="login">Login</button><button class="tab" data-tab="register">Daftar Pengguna</button></div>
+ <form id="loginForm"><label>Username<input id="loginUser" required autocomplete="username" placeholder="Nama pengguna"></label><label>Password<input id="loginPass" required type="password" autocomplete="current-password" placeholder="Masukkan password"></label><button class="btn full">Masuk</button></form>
+ <form id="registerForm" class="hidden"><label>Nama pengguna<input id="regUser" required placeholder="Nama kamu"></label><label>Password <small>(5 huruf dan 1 angka, total 6 karakter)</small><input id="regPass" required minlength="6" maxlength="6" placeholder="contoh: baca1a"></label><button class="btn full">Buat akun</button></form>
+ <p id="authMessage" class="message"></p>
+</section></div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body></html>
