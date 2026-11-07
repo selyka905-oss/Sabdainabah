@@ -1,33 +1,39 @@
 # Pustaka Al-Inabah
 
-Website perpustakaan digital sekolah dengan tampilan teal-putih.
+Website perpustakaan digital untuk SMP IT & SMK Al-Inabah Ponorogo.
 
-## Menjalankan
-1. Ekstrak ZIP.
-2. Buka `index.html` menggunakan browser modern (Chrome/Edge).
-3. Login admin untuk mencoba dashboard.
+## Teknologi dan konfigurasi
+- Frontend HTML, CSS, dan JavaScript.
+- Supabase Auth untuk akun siswa/admin.
+- Tabel `public.buku` untuk metadata koleksi.
+- Supabase Storage bucket privat `buku-digital` untuk sampul dan PDF.
+- PDF dibuka melalui signed URL setelah pengguna login.
 
-## Akun admin demo
-- Username: `Happyadmindigy`
-- Password: `MinDygipusinabah`
+Konfigurasi browser memakai Supabase publishable key. Jangan pernah menaruh `service_role key`, password admin, atau rahasia server di file frontend.
 
-## Fitur
-- Beranda, pencarian, statistik koleksi, berita.
-- Koleksi buku dengan rak Fiksi dan Non-Fiksi.
-- Login admin dan pendaftaran/login pengguna.
-- Pembaca PDF (pengguna harus login; admin dapat langsung membaca setelah login admin).
-- Misi literasi, pemeriksaan jawaban, poin, riwayat, dan lencana.
-- Admin mengelola buku, metadata DDC, sampul, PDF, misi, pengguna, dan berita.
-- Asisten pencarian koleksi berbasis kata kunci.
+## Menjalankan secara lokal
+1. Unduh/clone repository.
+2. Buka folder `Pustaka_Al-Inabah`.
+3. Jalankan melalui server lokal statis (misalnya Live Server), bukan dengan mengandalkan file lokal.
+4. Pastikan konfigurasi Supabase dan kebijakan RLS/Storage sudah sesuai.
 
-## Catatan penting sebelum dipakai sungguhan
-Paket ini adalah **prototype front-end** yang menyimpan data pada `localStorage` browser. Artinya data hanya tersimpan pada browser/perangkat yang sama, belum tersinkron untuk seluruh siswa. Berkas yang diunggah dibatasi 8 MB agar penyimpanan browser tetap ringan.
+## Pengelolaan admin
+Tidak ada akun admin demo atau password bawaan di kode. Akun admin harus dibuat melalui Supabase Auth, lalu identitas UUID pengguna yang sesuai harus dimasukkan ke `public.admin_users` melalui proses tepercaya di Supabase (misalnya SQL Editor oleh pengelola proyek). Jangan memberikan hak admin kepada akun siswa melalui frontend.
 
-Kredensial admin pada prototype berada di JavaScript dan dapat dilihat dari browser. **Jangan gunakan kredensial ini untuk sistem produksi.** Untuk penggunaan sekolah, sambungkan ke backend seperti Supabase:
-- autentikasi admin/siswa di server (jangan menyimpan password mentah);
-- tabel buku, misi, pengguna, berita, riwayat misi;
-- Supabase Storage untuk sampul dan PDF;
-- Row Level Security agar hanya admin dapat mengelola data;
-- validasi role admin dari server, bukan dari kode browser.
+## Status fitur pada branch percobaan
+- Autentikasi siswa/admin: terhubung ke Supabase Auth.
+- Koleksi buku: membaca metadata dari `public.buku`.
+- Tambah/edit/hapus buku: memerlukan role admin dan kebijakan RLS yang benar.
+- PDF: disimpan pada bucket privat dan dibuka setelah login.
+- Sampul: saat ini memakai signed URL; karena bucket privat, pratinjau sampul pada pengunjung anonim dapat tidak tampil sampai kebijakan/penyimpanan sampul publik disiapkan secara terpisah.
+- Misi, poin, riwayat, berita: masih menggunakan penyimpanan lokal browser, belum tersinkron antarperangkat.
+- Daftar pengguna dan statistik pembaca: belum dihubungkan ke tabel profil pengguna.
+- Asisten AI: masih pencarian koleksi berbasis kata kunci, bukan layanan AI generatif.
 
-Asisten AI di paket ini adalah pencarian koleksi berbasis kata kunci, bukan model AI yang terhubung ke layanan eksternal. Tautan berita contoh perlu diganti admin dengan berita yang benar-benar dipilih.
+## Sebelum rilis
+Branch ini masih untuk pengujian. Belum boleh digabung ke `main` atau dipublikasikan sebelum:
+1. Admin dibuat dan diuji dengan aman.
+2. RLS dan Storage diuji memakai akun siswa dan admin terpisah.
+3. Alur daftar, login, logout, CRUD buku, dan akses PDF diuji.
+4. Fitur misi, berita, dan statistik yang masih lokal diputuskan untuk disimpan di server.
+5. Website diuji pada desktop dan ponsel.
