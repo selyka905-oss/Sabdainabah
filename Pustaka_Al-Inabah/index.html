@@ -19,7 +19,7 @@
  <button class="x" id="authClose">×</button><h2>Masuk ke Pustaka</h2><p class="muted">Masuk sebagai admin atau daftar sebagai siswa.</p>
  <div class="tabs"><button class="tab active" data-tab="login">Login</button><button class="tab" data-tab="register">Daftar Pengguna</button></div>
  <form id="loginForm"><label>Username<input id="loginUser" required autocomplete="username" placeholder="Nama pengguna"></label><label>Password<input id="loginPass" required type="password" autocomplete="current-password" placeholder="Masukkan password"></label><button class="btn full">Masuk</button></form>
- <form id="registerForm" class="hidden"><label>Nama pengguna<input id="regUser" required placeholder="Nama kamu"></label><label>Password <small>(5 huruf dan 1 angka, total 6 karakter)</small><input id="regPass" required minlength="6" maxlength="72" placeholder="contoh: baca1a"></label><button class="btn full">Buat akun</button></form>
+ <form id="registerForm" class="hidden"><label>Nama pengguna<input id="regUser" required minlength="3" maxlength="30" pattern="[A-Za-z0-9._-]{3,30}" autocomplete="username" placeholder="contoh: siswa01"><small>3–30 karakter; gunakan huruf, angka, titik, garis bawah, atau tanda hubung.</small></label><label>Password <small>(minimal 6 karakter)</small><input id="regPass" required type="password" minlength="6" maxlength="72" autocomplete="new-password" placeholder="Buat password"></label><button class="btn full">Buat akun</button></form>
  <p id="authMessage" class="message"></p>
 </section></div>
 <div class="toast" id="toast"></div>
